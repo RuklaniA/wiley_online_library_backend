@@ -4,7 +4,7 @@ package com.wiley.library.payload.response;
 import java.util.List;
 
 public class JwtResponse {
-	
+
 	private String token;
 	private String type="Bearer";
 	private Long id;
@@ -13,7 +13,7 @@ public class JwtResponse {
 	private String username;
 	private String password;
 	private List<String> roles;
-	
+
 	public JwtResponse(String accessToken, Long id,String firstName,String lastName, String username, String password, List<String> roles) {
 		this.token = accessToken;
 		this.id = id;
@@ -29,7 +29,7 @@ public class JwtResponse {
 	}
 
 	public void setAccessToken(String accessToken) {
-		this.token = token;
+		this.token = accessToken;
 	}
 
 	public String getTokenType() {
@@ -47,8 +47,6 @@ public class JwtResponse {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
 
 	public String getFirstName() {
 		return firstName;
@@ -89,5 +87,5 @@ public class JwtResponse {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	
+
 }

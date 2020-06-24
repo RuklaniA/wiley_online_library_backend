@@ -10,28 +10,28 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(	name = "users" ,
-		uniqueConstraints = { 
-			@UniqueConstraint(columnNames = "username"),
-			@UniqueConstraint(columnNames = "email") 
-	}
-)
+uniqueConstraints = { 
+		@UniqueConstraint(columnNames = "username"),
+		@UniqueConstraint(columnNames = "email") 
+}
+		)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	@Size(max = 50)
 	private String firstName;
-	
+
 	@NotBlank
 	@Size(max = 50)
 	private String lastName;
-	
+
 	@NotBlank
 	@Size(max = 20)
 	private String username;
-	
+
 
 	@NotBlank
 	@Size(max = 50)
@@ -44,8 +44,8 @@ public class User {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	joinColumns = @JoinColumn(name = "user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	public User() {
@@ -76,7 +76,7 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-//------------------------------------
+
 	public String getLastName() {
 		return lastName;
 	}
@@ -84,15 +84,14 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-//------------------------------------
+
 	public String getUsername() {
-	return username;
-}
+		return username;
+	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-//---------------------------------------
+
 	public String getEmail() {
 		return email;
 	}
@@ -100,7 +99,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	//--------------------------------------
+
 
 	public String getPassword() {
 		return password;

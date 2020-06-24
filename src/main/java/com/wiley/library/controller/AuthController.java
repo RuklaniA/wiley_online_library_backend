@@ -59,21 +59,21 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		
+
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(new JwtResponse(jwt, 
-												 userDetails.getId(), 
-												 userDetails.getFirstName(),
-												 userDetails.getLastName(),
-												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
-												 roles));
+				userDetails.getId(), 
+				userDetails.getFirstName(),
+				userDetails.getLastName(),
+				userDetails.getUsername(), 
+				userDetails.getEmail(), 
+				roles));
 	}
-	
+
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -90,11 +90,11 @@ public class AuthController {
 
 		// Create new user account
 		User user = new User(
-				             signUpRequest.getFirstName(),
-				             signUpRequest.getLastName(),
-				             signUpRequest.getUsername(), 
-							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()));
+				signUpRequest.getFirstName(),
+				signUpRequest.getLastName(),
+				signUpRequest.getUsername(), 
+				signUpRequest.getEmail(),
+				encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -108,19 +108,19 @@ public class AuthController {
 				switch (role) {
 				case "admin":
 					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(adminRole);
 
 					break;
 				case "librarian":
 					Role libRole = roleRepository.findByName(ERole.ROLE_LIBRARIAN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(libRole);
 
 					break;
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(userRole);
 				}
 			});

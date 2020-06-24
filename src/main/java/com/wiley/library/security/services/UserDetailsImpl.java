@@ -16,11 +16,11 @@ public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String username;
 
 	private String email;
@@ -64,8 +64,8 @@ public class UserDetailsImpl implements UserDetails {
 	public Long getId() {
 		return id;
 	}
-	
-	
+
+
 	public String getFirstName() {
 		return firstName;
 	}

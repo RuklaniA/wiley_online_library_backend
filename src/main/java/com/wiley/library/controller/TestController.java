@@ -14,12 +14,6 @@ public class TestController {
 	public String allAccess() {
 		return "Public Content.";
 	}
-	
-	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('LIBRARIAN') or hasRole('ADMIN')")
-	public String userAccess() {
-		return "User Content.";
-	}
 
 	@GetMapping("/librarian")
 	@PreAuthorize("hasRole('LIBRARIAN')")
@@ -30,6 +24,6 @@ public class TestController {
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String adminAccess() {
-		return "Admin Board.";
+		return "Admin Board";
 	}
 }
