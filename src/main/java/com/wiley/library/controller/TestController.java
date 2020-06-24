@@ -28,7 +28,7 @@ public class TestController {
 	}
 	
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('USER')or hasRole('LIBRARIAN') or hasRole('ADMIN')")
 	public String userAccess() {
 		return "User Board";
 	}
